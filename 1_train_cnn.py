@@ -93,11 +93,13 @@ def cnn_model(input_shape):
     
     X = MaxPooling2D((1,2), name='max_pool_1', data_format = 'channels_last')(X)
     
-    X = Conv2D(1, (1,10), strides = (1, 1), name = 'conv2', data_format = 'channels_last')(X)
+    X = Conv2D(32, (1,10), strides = (1, 1), name = 'conv2', data_format = 'channels_last')(X)
     X = BatchNormalization(axis = -1, name = 'bn2')(X)
     X = Activation('relu')(X)
     
     X = Flatten()(X)
+    
+    X = Dense(128, activation='softmax', name='fc0')(X)
     
     X = Dense(3, activation='softmax', name='fc1')(X)
     
