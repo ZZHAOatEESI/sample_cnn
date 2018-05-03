@@ -99,7 +99,7 @@ def cnn_model(input_shape):
     
     X = Flatten()(X)
     
-    X = Dense(32, activation='softmax', name='fc0')(X)
+    X = Dense(128, activation='softmax', name='fc0')(X)
     
     X = Dense(3, activation='softmax', name='fc1')(X)
     
@@ -113,7 +113,7 @@ model.summary()
 model.compile('adam', 'categorical_crossentropy', metrics=['accuracy'])
 
 # Train model on dataset
-model.fit_generator(generator=training_generator,epochs=20)
+model.fit_generator(generator=training_generator,epochs=30)
 model.save('sample_cnn_model.pkl')
 
 acc = model.evaluate_generator(generator=testing_generator)
